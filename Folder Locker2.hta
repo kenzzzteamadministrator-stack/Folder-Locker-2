@@ -1,0 +1,169 @@
+<html>
+
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+<title>Folder Locker</title>
+
+<HTA:APPLICATION
+APPLICATIONNAME="Vault"
+BORDER="thick"
+CAPTION="yes"
+SHOWINTASKBAR="yes"
+SINGLEINSTANCE="yes"
+WINDOWSTATE="normal"
+/>
+
+<style>
+
+body{
+    background:black;
+    color:lime;
+    font-family:Consolas;
+    text-align:center;
+}
+
+.box{
+    margin:auto;
+    margin-top:100px;
+    width:400px;
+    border:2px solid lime;
+    padding:20px;
+    box-shadow:0 0 20px lime;
+}
+
+h1{
+    font-size:28px;
+}
+
+input{
+    background:black;
+    color:lime;
+    border:2px solid lime;
+    padding:10px;
+    width:220px;
+    font-family:Consolas;
+    font-size:16px;
+    outline:none;
+}
+
+button{
+    background:black;
+    color:lime;
+    border:2px solid lime;
+    padding:10px;
+    width:180px;
+    cursor:pointer;
+    margin-top:10px;
+    font-family:Consolas;
+}
+
+button:hover{
+    background:lime;
+    color:black;
+}
+
+.scan{
+    color:gray;
+    margin-top:20px;
+    font-size:13px;
+}
+
+</style>
+
+<script language="javascript">
+
+function fakeScan(){
+
+    document.getElementById("scan").innerHTML =
+    "[ OK ] Connecting Secure Database...";
+
+    setTimeout(step2,1000);
+
+}
+
+function step2(){
+
+    document.getElementById("scan").innerHTML =
+    "[ OK ] Loading Encryption Modules...";
+
+    setTimeout(step3,1000);
+
+}
+
+function step3(){
+
+    document.getElementById("scan").innerHTML =
+    "[ OK ] Secure System Online";
+
+}
+
+function unlock(){
+
+    var password = "12345";
+
+    var input =
+    document.getElementById("pass").value;
+
+    var popup =
+    new ActiveXObject("WScript.Shell");
+
+    if(input == password){
+
+        popup.Popup(
+        "ACCESS GRANTED",
+        2,
+        "Folder Locker",
+        64
+        );
+
+        var shell =
+        new ActiveXObject("WScript.Shell");
+
+        shell.Run("explorer PrivateVault");
+
+    }
+
+    else{
+
+        popup.Popup(
+        "ACCESS DENIED",
+        2,
+        "Folder Locker",
+        16
+        );
+
+    }
+
+}
+
+</script>
+
+</head>
+
+<body onload="fakeScan()">
+
+<div class="box">
+
+<h1>Folder Locker</h1>
+
+<p>ENTER PASSWORD</p>
+
+<input type="password" id="pass">
+
+<br><br>
+
+<button onclick="unlock()">
+UNLOCK VAULT
+</button>
+
+<div class="scan" id="scan">
+Initializing...
+</div>
+
+</div>
+
+</body>
+
+</html>

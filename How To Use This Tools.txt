@@ -1,0 +1,4 @@
+Step 1, create a new folder named "PrivateVault"
+Step 2 Open Folder Locker
+Step 3 Hide PrivateVault
+Step 4 Password "67675"
